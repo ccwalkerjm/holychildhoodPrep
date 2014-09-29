@@ -45,133 +45,13 @@
 <!--==============================Header=================================-->
 		<header>
 
-			<div class="row top">
-
-				<div class="span3">
-	            	<div class="clearfix">
-	                    <div class="clearfix header-block-pad">
-	                       <a href="index.html"><img src="images/logo.png" alt=""></a>					
-	                    </div>
-	                </div>
-	          	</div>
-	        	<div class="span7">
-					<p class="phone">
-						We always care about your child! Call us:  <span>1 800 123 4567</span>
-					</p>
-				</div>   
-				<div class="span2">
-					<div class="clearfix">
-						<div class="social">
-							<a href="#"><img src="images/social-1.jpg" alt="" width="32" height="32"  /></a>
-							<a href="#"><img src="images/social-2.jpg" alt="" width="32" height="32"  /></a>
-							<a href="#"><img src="images/social-3.jpg" alt="" width="32" height="32"  /></a>
-							<a href="#"><img src="images/social-4.jpg" alt="" width="32" height="32"  /></a>
-						</div>
-					</div>
-				</div>
-
+			<div id="header" class="row top">
+				
 			</div>
     
     <!--==============================Nav=================================-->          
 		    <div id="nav_section">
-		      
-		        <div class="row">
-		          <div class="span12">
-		            <div class="navbar navbar_ clearfix">
-		              <div class="navbar-inner navbar-inner_">
-		                 
-		                      <a class="menu btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>                                                   
-		                      <div class="nav-collapse nav-collapse_ collapse">
-
-   			                    <span class="line"></span>
-
-		                          <ul class="nav sf-menu">
-		                            <li>
-										<a href="index.html">
-											home page
-										</a>
-									</li>
-									<li  class="sub-menu ">
-										<a href="index-1.html">
-											who we are
-										</a>
-									</li>
-									<li>
-										<a href="index-2.html">
-											services
-										</a>
-										<ul>
-											<li>
-												<a href="index-2.html">
-													What we do
-												</a>
-											</li>
-											<li class="has-ul">
-												<a href="index-2.html">
-													Recent projects
-												</a>
-													<ul>
-														<li>
-															<a href="index-2.html">
-																Project 1
-															</a>
-														</li>
-														<li>
-															<a href="index-2.html">
-																Project 2
-															</a>
-														</li>
-														<li>
-															<a href="index-2.html">
-																Project 3
-															</a>
-														</li>
-													</ul>
-
-											</li>
-											<li>
-												<a href="index-2.html">
-													Childcare
-												</a>
-											</li>
-											<li>
-												<a href="index-2.html">
-													Education
-												</a>
-											</li>
-											<li>
-												<a href="404.html">
-													Page not found (404)
-												</a>
-											</li>
-										</ul>
-										
-									</li>
-									<li  >
-										<a href="index-3.html">
-											classes
-										</a>
-									</li>
-									<li class="active">
-										<a href="index-4.html">
-											gallery
-										</a>
-									</li>
-									<li >
-										<a href="index-5.html">
-											contacts
-										</a>
-									</li>
-		                          </ul>
-		                      </div>
-
-
-		              </div>
-		            </div>
-		          </div>
-		        </div>   
-
-		    </div>
+            </div>
 
 	<!--==============================End Nav=================================-->
 
@@ -340,60 +220,6 @@
 
 <footer>
 	<div class="bg_center_footer">
-		<div class="container">
-			<div class="row">	
-				<div class="span9">
-					
-					<ul>
-						<li>
-							<a href="index.html">
-								Home Page
-							</a>
-						</li>
-						<li  class="sub-menu">
-							<a href="index-1.html">
-								Who We Are
-							</a>
-						</li>
-						<li>
-							<a href="index-2.html">
-								Services
-							</a>
-						</li>
-						<li >
-							<a href="index-3.html">
-								Classes
-							</a>
-						</li>
-						<li >
-							<a href="index-4.html">
-								Gallery
-							</a>
-						</li>
-						<li >
-							<a href="index-5.html">
-								Contacts
-							</a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-					<p>
-						Copyright &copy; 2013. All rights reserved.
-					</p>
-	
-				</div>
-	
-				<div class="span3">
-				<!--==============================Search=========================-->
-					<form id="search-form" action="search.php" method="GET" accept-charset="utf-8" class="navbar-form" >
-						<input type="text" name="s"  value='Search this website' onBlur="if(this.value=='') this.value='Search this website'" onFocus="if(this.value =='Search this website' ) this.value=''"  >
-						<a href="#" onClick="document.getElementById('search-form').submit()"></a>
-					</form>
-				</div>
-	
-	
-			</div>
-		</div><!-- End Container  -->
 	</div>
 </footer>
 
@@ -401,5 +227,25 @@
 
 </div><!-- bg top  -->
 <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+
+
+            $("#nav_section").load("nav.html", function () {
+                $(this).find(".sf-menu a[href$='" + getPageName() + "']").parent().addClass("active");
+            })
+
+            $(".bg_center_footer").load("footer.html", function () {
+                $(this).find(".container a[href$='" + getPageName() + "']").parent().addClass("active");
+            })
+
+            function getPageName() {
+                var url = window.location.pathname;
+                var index = url.lastIndexOf(" / ") + 2;
+                return url.substr(index);
+            }
+        });
+    </script>
 </body>
 </html>
